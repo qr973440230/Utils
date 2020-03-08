@@ -1,6 +1,5 @@
 package com.qr.library.utils
 
-import android.annotation.SuppressLint
 import android.text.TextUtils
 import android.text.format.DateFormat
 import java.text.ParseException
@@ -27,7 +26,6 @@ object DateUtils {
     private const val PATTERN = PATTERN_DATE + PATTERN_SPLIT + PATTERN_TIME
 
     fun getShortTime(dateStr: String): String {
-        val str: String
 
         val date = str2date(dateStr)
         val curDate = Date()
@@ -67,14 +65,12 @@ object DateUtils {
      * @return 累加后的日期 PATTERN_DATE 部分
      */
     fun addMonth(date: String, moonCount: Int): String {
-        var date = date
-        if (TextUtils.isEmpty(date)) {
-
-//            val df = SimpleDateFormat(PATTERN_DATE + PATTERN_SPLIT + PATTERN_TIME)
+        var date1 = date
+        if (TextUtils.isEmpty(date1)) {
             val df = SimpleDateFormat.getDateTimeInstance()
-            date = df.format(Date())
+            date1 = df.format(Date())
         }
-        val calendar = str2calendar(date)
+        val calendar = str2calendar(date1)
         calendar!!.add(Calendar.MONTH, moonCount)
         return getDate(calendar2str(calendar))
     }
@@ -146,8 +142,10 @@ object DateUtils {
      * @return
      */
     fun calculateMonthDiff(targetTime: String, compareTime: String): Int {
-        return calculateMonthDiff(str2date(targetTime, PATTERN_DATE),
-                str2date(compareTime, PATTERN_DATE))
+        return calculateMonthDiff(
+            str2date(targetTime, PATTERN_DATE)!!,
+            str2date(compareTime, PATTERN_DATE)!!
+        )
     }
 
     /**
@@ -157,7 +155,7 @@ object DateUtils {
      * @param compareTime
      * @return
      */
-    fun calculateMonthDiff(targetTime: Date?, compareTime: Date?): Int {
+    fun calculateMonthDiff(targetTime: Date, compareTime: Date): Int {
         val tarCalendar = Calendar.getInstance()
         tarCalendar.time = targetTime
         val tarYear = tarCalendar.get(Calendar.YEAR)
@@ -190,13 +188,11 @@ object DateUtils {
         return tarYear == comYear
     }
 
-    @SuppressLint("SimpleDateFormat")
-    @JvmOverloads
     private fun str2date(str: String?, format: String = PATTERN): Date? {
         var date: Date? = null
         try {
             if (str != null) {
-                val sdf = SimpleDateFormat(format)
+                val sdf = SimpleDateFormat(format, Locale.getDefault())
                 date = sdf.parse(str)
             }
         } catch (e: ParseException) {
@@ -206,7 +202,6 @@ object DateUtils {
         return date
     }
 
-    @JvmOverloads
     private fun date2str(date: Date, format: String = PATTERN): String {
         val sdf = SimpleDateFormat(format, Locale.CHINA)
         return sdf.format(date)
@@ -221,7 +216,6 @@ object DateUtils {
         }
         return calendar
     }
-
 
     fun str2calendar(str: String, format: String): Calendar? {
         var calendar: Calendar? = null
