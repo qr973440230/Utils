@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 339 && resultCode == RESULT_OK) {
             picPath?.let {
-                Log.d("!!!", picPath)
+                Log.d("!!!", it)
             }
         }
     }
