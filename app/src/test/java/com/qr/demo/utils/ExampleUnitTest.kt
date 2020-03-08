@@ -1,4 +1,4 @@
-package com.example.utils
+package com.qr.demo.utils
 
 import org.junit.Test
 

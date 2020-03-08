@@ -1,4 +1,4 @@
-package com.example.utils
+package com.qr.demo.utils
 
 import android.Manifest
 import android.content.Intent
