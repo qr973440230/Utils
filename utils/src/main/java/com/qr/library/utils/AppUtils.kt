@@ -13,11 +13,36 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.core.app.ActivityCompat
+import java.lang.reflect.InvocationTargetException
+
 
 /**
  * App工具类
  */
 object AppUtils {
+    private var sApplication: Application? = null
+
+    @Synchronized
+    @SuppressLint("PrivateApi")
+    @JvmStatic
+    fun getApplication(): Application? {
+        if (sApplication == null) {
+            try {
+                sApplication = Class.forName("android.app.ActivityThread")
+                    .getMethod("currentApplication")
+                    .invoke(null) as Application
+            } catch (e: IllegalAccessException) {
+                e.printStackTrace()
+            } catch (e: InvocationTargetException) {
+                e.printStackTrace()
+            } catch (e: NoSuchMethodException) {
+                e.printStackTrace()
+            } catch (e: ClassNotFoundException) {
+                e.printStackTrace()
+            }
+        }
+        return sApplication
+    }
 
     /**
      * 获取版本名称
