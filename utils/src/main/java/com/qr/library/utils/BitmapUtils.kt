@@ -56,7 +56,7 @@ object BitmapUtils {
      * @param bitmap 要模糊的图片
      * @param radius 模糊等级 >=0 && <=25
      */
-    private fun blurBitmap(context: Context, bitmap: Bitmap, radius: Int): Bitmap {
+    fun blurBitmap(context: Context, bitmap: Bitmap, radius: Int): Bitmap {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             val outBitmap = Bitmap.createBitmap(
                 bitmap.width, bitmap.height, Bitmap
@@ -122,7 +122,7 @@ object BitmapUtils {
     /**
      * 根据文件路径获取Bitmap
      */
-    private fun getFitSampleBitmap(path: String, width: Int, height: Int): Bitmap {
+    fun getFitSampleBitmap(path: String, width: Int, height: Int): Bitmap {
         val options = BitmapFactory.Options()
         options.inJustDecodeBounds = true
         BitmapFactory.decodeFile(path, options)
@@ -169,7 +169,7 @@ object BitmapUtils {
     /**
      * 获取压缩比例
      */
-    private fun getFitInSampleSize(height: Int, width: Int, options: BitmapFactory.Options): Int {
+    fun getFitInSampleSize(height: Int, width: Int, options: BitmapFactory.Options): Int {
         var inSampleSize = 1
         if (options.outWidth > width || options.outHeight > height) {
             val widthRadio: Int = (options.outWidth.toFloat() / width.toFloat()).roundToInt()
@@ -182,7 +182,7 @@ object BitmapUtils {
     /**
      * Drawable To Bitmap
      */
-    private fun drawableToBitmap(drawable: Drawable): Bitmap {
+    fun drawableToBitmap(drawable: Drawable): Bitmap {
         if (drawable is BitmapDrawable) {
             return drawable.bitmap
         }

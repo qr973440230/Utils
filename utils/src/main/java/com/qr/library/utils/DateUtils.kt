@@ -118,7 +118,7 @@ object DateUtils {
     /**
      * 计算年数差
      */
-    private fun calculateYearDiff(targetTime: Date?, compareTime: Date?): Int {
+    fun calculateYearDiff(targetTime: Date?, compareTime: Date?): Int {
         if (targetTime == null || compareTime == null) {
             return 0
         }
@@ -172,7 +172,7 @@ object DateUtils {
     /**
      * 是否为同一年
      */
-    private fun isSameYear(targetTime: Date?, compareTime: Date?): Boolean {
+    fun isSameYear(targetTime: Date?, compareTime: Date?): Boolean {
         if (targetTime == null || compareTime == null) {
             return false
         }
@@ -188,7 +188,7 @@ object DateUtils {
         return tarYear == comYear
     }
 
-    private fun str2date(str: String?, format: String = PATTERN): Date? {
+    fun str2date(str: String?, format: String = PATTERN): Date? {
         var date: Date? = null
         try {
             if (str != null) {
@@ -202,12 +202,12 @@ object DateUtils {
         return date
     }
 
-    private fun date2str(date: Date, format: String = PATTERN): String {
+    fun date2str(date: Date, format: String = PATTERN): String {
         val sdf = SimpleDateFormat(format, Locale.CHINA)
         return sdf.format(date)
     }
 
-    private fun str2calendar(str: String): Calendar? {
+    fun str2calendar(str: String): Calendar? {
         var calendar: Calendar? = null
         val date = str2date(str)
         if (date != null) {
@@ -227,7 +227,7 @@ object DateUtils {
         return calendar
     }
 
-    private fun calendar2str(calendar: Calendar): String {
+    fun calendar2str(calendar: Calendar): String {
         return date2str(calendar.time)
     }
 
