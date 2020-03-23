@@ -47,6 +47,7 @@ object AppUtils {
     /**
      * 获取版本名称
      */
+    @JvmStatic
     fun getAppVersionName(context: Context): String? {
         var versionName: String? = null
         try {
@@ -66,6 +67,7 @@ object AppUtils {
     /**
      * 获取版本号
      */
+    @JvmStatic
     fun getAppVersionCode(context: Context): Int {
         var versioncode = -1
         try {
@@ -82,6 +84,7 @@ object AppUtils {
 
     @Suppress("DEPRECATION")
     @SuppressLint("HardwareIds")
+    @JvmStatic
     fun getIMEI(context: Context): String? {
         val tm = context.getSystemService(
             Context

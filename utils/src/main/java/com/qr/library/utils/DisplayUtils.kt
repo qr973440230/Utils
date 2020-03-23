@@ -13,6 +13,7 @@ object DisplayUtils {
     /**
      * 将px值转换为dp值
      */
+    @JvmStatic
     fun px2dp(pxValue: Float, context: Context): Int {
         val scale = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, context.resources.displayMetrics)
 
@@ -22,6 +23,7 @@ object DisplayUtils {
     /**
      * 将dp值转换为px值
      */
+    @JvmStatic
     fun dp2px(dpValue: Float, context: Context): Int {
         val scale = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, context.resources.displayMetrics)
         return scale.toInt()
@@ -30,6 +32,7 @@ object DisplayUtils {
     /**
      * 将px值转换为sp值
      */
+    @JvmStatic
     fun px2sp(pxValue: Float, context: Context): Int {
         val scale = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, pxValue, context.resources.displayMetrics)
         return scale.toInt()
@@ -38,6 +41,7 @@ object DisplayUtils {
     /**
      * 将sp值转换为px值
      */
+    @JvmStatic
     fun sp2px(spValue: Float, context: Context): Int {
         val scale = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.resources.displayMetrics)
         return scale.toInt()
@@ -46,6 +50,7 @@ object DisplayUtils {
     /**
      * 获取屏幕宽度
      */
+    @JvmStatic
     fun getScreenWidthPixels(context: Activity): Int {
         val metric = DisplayMetrics()
         context.windowManager.defaultDisplay.getMetrics(metric)
@@ -55,6 +60,7 @@ object DisplayUtils {
     /**
      * 获取屏幕高度
      */
+    @JvmStatic
     fun getScreenHeightPixels(context: Activity): Int {
         val metric = DisplayMetrics()
         context.windowManager.defaultDisplay.getMetrics(metric)
