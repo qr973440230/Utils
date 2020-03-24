@@ -57,7 +57,7 @@ object BitmapUtils {
      * @param radius 模糊等级 >=0 && <=25
      */
     private fun blurBitmap(context: Context, bitmap: Bitmap, radius: Int): Bitmap {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             val outBitmap = Bitmap.createBitmap(
                 bitmap.width, bitmap.height, Bitmap
                     .Config.ARGB_8888
