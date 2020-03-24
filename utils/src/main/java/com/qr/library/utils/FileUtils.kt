@@ -40,7 +40,7 @@ object FileUtils {
         )
     }
 
-    private fun createTemporaryWritableFile(
+    fun createTemporaryWritableFile(
         suffix: String,
         externalFilesDirectory: File?
     ): File {

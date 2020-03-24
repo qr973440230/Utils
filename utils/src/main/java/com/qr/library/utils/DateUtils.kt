@@ -25,8 +25,8 @@ object DateUtils {
     private const val PATTERN_SPLIT = " "
     private const val PATTERN = PATTERN_DATE + PATTERN_SPLIT + PATTERN_TIME
 
+    @JvmStatic
     fun getShortTime(dateStr: String): String {
-
         val date = str2date(dateStr)
         val curDate = Date()
 
@@ -53,6 +53,7 @@ object DateUtils {
     /**
      * 获取日期 PATTERN_DATE 部分
      */
+    @JvmStatic
     fun getDate(date: String): String {
         return if (TextUtils.isEmpty(date) || !date.contains(PATTERN_SPLIT)) {
             ""
@@ -64,6 +65,7 @@ object DateUtils {
      *
      * @return 累加后的日期 PATTERN_DATE 部分
      */
+    @JvmStatic
     fun addMonth(date: String, moonCount: Int): String {
         var date1 = date
         if (TextUtils.isEmpty(date1)) {
@@ -78,6 +80,7 @@ object DateUtils {
     /**
      * 计算天数差
      */
+    @JvmStatic
     fun calculateDayDiff(targetTime: Date, compareTime: Date): Int {
         val sameYear = isSameYear(targetTime, compareTime)
         if (sameYear) {
@@ -99,6 +102,7 @@ object DateUtils {
     /**
      * 计算同一年内的天数差
      */
+    @JvmStatic
     fun calculateDayDiffOfSameYear(targetTime: Date?, compareTime: Date?): Int {
         if (targetTime == null || compareTime == null) {
             return 0
@@ -118,7 +122,8 @@ object DateUtils {
     /**
      * 计算年数差
      */
-    private fun calculateYearDiff(targetTime: Date?, compareTime: Date?): Int {
+    @JvmStatic
+    fun calculateYearDiff(targetTime: Date?, compareTime: Date?): Int {
         if (targetTime == null || compareTime == null) {
             return 0
         }
@@ -141,6 +146,7 @@ object DateUtils {
      * @param compareTime
      * @return
      */
+    @JvmStatic
     fun calculateMonthDiff(targetTime: String, compareTime: String): Int {
         return calculateMonthDiff(
             str2date(targetTime, PATTERN_DATE)!!,
@@ -155,6 +161,7 @@ object DateUtils {
      * @param compareTime
      * @return
      */
+    @JvmStatic
     fun calculateMonthDiff(targetTime: Date, compareTime: Date): Int {
         val tarCalendar = Calendar.getInstance()
         tarCalendar.time = targetTime
@@ -172,7 +179,8 @@ object DateUtils {
     /**
      * 是否为同一年
      */
-    private fun isSameYear(targetTime: Date?, compareTime: Date?): Boolean {
+    @JvmStatic
+    fun isSameYear(targetTime: Date?, compareTime: Date?): Boolean {
         if (targetTime == null || compareTime == null) {
             return false
         }
@@ -188,7 +196,9 @@ object DateUtils {
         return tarYear == comYear
     }
 
-    private fun str2date(str: String?, format: String = PATTERN): Date? {
+    @JvmOverloads
+    @JvmStatic
+    fun str2date(str: String?, format: String = PATTERN): Date? {
         var date: Date? = null
         try {
             if (str != null) {
@@ -202,12 +212,15 @@ object DateUtils {
         return date
     }
 
-    private fun date2str(date: Date, format: String = PATTERN): String {
+    @JvmOverloads
+    @JvmStatic
+    fun date2str(date: Date, format: String = PATTERN): String {
         val sdf = SimpleDateFormat(format, Locale.CHINA)
         return sdf.format(date)
     }
 
-    private fun str2calendar(str: String): Calendar? {
+    @JvmStatic
+    fun str2calendar(str: String): Calendar? {
         var calendar: Calendar? = null
         val date = str2date(str)
         if (date != null) {
@@ -217,6 +230,7 @@ object DateUtils {
         return calendar
     }
 
+    @JvmStatic
     fun str2calendar(str: String, format: String): Calendar? {
         var calendar: Calendar? = null
         val date = str2date(str, format)
@@ -227,10 +241,12 @@ object DateUtils {
         return calendar
     }
 
-    private fun calendar2str(calendar: Calendar): String {
+    @JvmStatic
+    fun calendar2str(calendar: Calendar): String {
         return date2str(calendar.time)
     }
 
+    @JvmStatic
     fun calendar2str(calendar: Calendar, format: String): String {
         return date2str(calendar.time, format)
     }
